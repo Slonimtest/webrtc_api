@@ -77,6 +77,7 @@ return [
     */
 
     'send_logs_as_events' => true,
+    'collect_git_information' => false,
 
     'reporting' => [
         'anonymize_ips' => true,
