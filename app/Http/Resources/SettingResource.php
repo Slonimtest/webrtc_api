@@ -18,7 +18,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @AO\Property(property="studio_id", type="integer")
  * @AO\Property(property="options", type="string")
  */
-class SettinResource extends JsonResource
+class SettingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
