@@ -26,7 +26,7 @@ class Setting extends Model
      * @var array
      */
     protected $casts = [
-        'setting' => 'object'
+        'options' => 'object'
     ];
 
     /**
@@ -36,7 +36,7 @@ class Setting extends Model
      */
     protected $fillable = [
         'studio_id',
-        'setting'
+        'options'
     ];
 
     /**

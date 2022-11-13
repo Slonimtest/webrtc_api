@@ -4,11 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-/**
- * Class SettingListRequest
- * @package App\Http\Requests
- */
-class SettingListRequest extends Request
+class StudioResourceListRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.

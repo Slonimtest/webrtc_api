@@ -71,7 +71,7 @@ class StudioController extends ApiController
      *     @OA\Parameter(
      *      name="name", in="query", required=true, @OA\Schema(type="string")
      *     ),
-     *     @OA\Response(response="200", description="Created a new company"),
+     *     @OA\Response(response="200", description="Created a new studio"),
      *     @OA\Response(response="403", description="Parameters are forbidden")
      * )
      *

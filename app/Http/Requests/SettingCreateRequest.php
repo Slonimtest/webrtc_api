@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 
-class SettingCreateRequest extends FormRequest
+class SettingCreateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,18 +13,19 @@ class SettingCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
     public function rules()
     {
         return [
-            //
+            'options'   => 'nullable',
+            'studio_id' => 'string|required',
         ];
     }
 }

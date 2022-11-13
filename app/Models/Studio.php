@@ -25,6 +25,7 @@ class Studio extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'name'
     ];
 

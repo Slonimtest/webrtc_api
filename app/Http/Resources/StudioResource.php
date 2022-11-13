@@ -2,7 +2,9 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Studio;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -28,9 +30,17 @@ class StudioResource extends JsonResource
      */
     public function toArray($request)
     {
+        $studio = Studio::find($this->id);
+
+        foreach ($studio->studioResources as $resource) {
+            $url[] = $resource->url;
+        }
+
         return [
             'id'   => $this->id,
-            'name' => $this->name
+            'name' => $this->name,
+            'options' => $studio->settings->first(),
+            'url' => $url ?? ''
         ];
     }
 }
