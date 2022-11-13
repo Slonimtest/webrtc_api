@@ -22,7 +22,7 @@ class StudioController extends ApiController
      * Display a listing of the studios.
      *
      * @OA\Get(
-     *     path="/api/studios",
+     *     path="/api/v1/studios",
      *     operationId="StudioList",
      *     tags={"Studios"},
      *     @OA\Parameter(
@@ -67,7 +67,7 @@ class StudioController extends ApiController
      * @OA\Post(
      *     path="/api/v1/studios",
      *     operationId="StudioCreate",
-     *     tags={"Stidios"},
+     *     tags={"Studios"},
      *     @OA\Parameter(
      *      name="name", in="query", required=true, @OA\Schema(type="string")
      *     ),

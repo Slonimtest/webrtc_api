@@ -48,4 +48,14 @@ class Studio extends Model
     {
         return $this->hasMany(StudioResource::class);
     }
+
+    /**
+     * Current studio products
+     *
+     * @return HasMany
+     */
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 }

@@ -24,6 +24,12 @@ class StudioService extends Service
      */
     public function getList(int $limit = null, string $orderBy = null, bool $desc = null, ?string $studioId = null): LengthAwarePaginator
     {
+        $studio = Studio::where('name', $studioId)->first();
+        // dd($studio);
+        if ($studio === null) {
+            $this->create(['name' => $studioId]);
+        }
+        // dd($studioId);
         $query = Studio::where([]);
 
         if ($studioId) {

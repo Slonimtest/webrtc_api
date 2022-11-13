@@ -32,15 +32,31 @@ class StudioResource extends JsonResource
     {
         $studio = Studio::find($this->id);
 
+        $i = 0;
         foreach ($studio->studioResources as $resource) {
-            $url[] = $resource->url;
+            if (strpos($resource->url, '/img/')) {
+                $urlImg[$i]['id'] = $resource->id;
+                $urlImg[$i]['url'] = config('app.url') . $resource->url;
+            }
+            if (strpos($resource->url, '/logo/')) {
+                $urlLogo[$i]['id'] = $resource->id;
+                $urlLogo[$i]['url'] = config('app.url') . $resource->url;
+            }
+            $i += 1;
+        }
+        $settingStudio = $studio->settings->first();
+        if ($settingStudio) {
+            $setting['id'] = $settingStudio['id'] ?? null;
+            $setting['options'] = $settingStudio['options'] ?? null;
         }
 
         return [
             'id'   => $this->id,
             'name' => $this->name,
-            'options' => $studio->settings->first(),
-            'url' => $url ?? ''
+            'settings' => $setting ?? null,
+            'images' => $urlImg ?? null,
+            'logos' => $urlLogo ?? null,
+            'products' => null
         ];
     }
 }

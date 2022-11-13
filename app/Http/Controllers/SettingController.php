@@ -21,7 +21,7 @@ class SettingController extends ApiController
     /**
      * Display a listing of the setting.
      * @OA\Get(
-     *     path="/api/settings",
+     *     path="/api/v1/settings",
      *     operationId="SettingList",
      *     tags={"Settings"},
      *     @OA\Parameter(

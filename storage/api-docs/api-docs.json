@@ -1,0 +1,289 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Blog posts API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/settings": {
+            "get": {
+                "tags": [
+                    "Settings"
+                ],
+                "summary": "Display a listing of the setting.",
+                "operationId": "SettingList",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "order_by",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "studio_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return available companies list"
+                    },
+                    "403": {
+                        "description": "Company is forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Settings"
+                ],
+                "summary": "Store a newly created setting in storage.",
+                "operationId": "SettingCreate",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "options",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created a new setting"
+                    },
+                    "403": {
+                        "description": "Parameters are forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/studios": {
+            "get": {
+                "tags": [
+                    "Studios"
+                ],
+                "summary": "Display a listing of the studios.",
+                "operationId": "StudioList",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "order_by",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "studio_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return available companies list"
+                    },
+                    "403": {
+                        "description": "Company is forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Studios"
+                ],
+                "summary": "Store a newly created studio in storage.",
+                "operationId": "StudioCreate",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created a new studio"
+                    },
+                    "403": {
+                        "description": "Parameters are forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/resources": {
+            "get": {
+                "tags": [
+                    "StudioResources"
+                ],
+                "summary": "Display a listing of the studio resource.",
+                "operationId": "StudioResourceList",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "order_by",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "studio_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return available companies list"
+                    },
+                    "403": {
+                        "description": "Company is forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Images"
+                ],
+                "summary": "Upload a new image.",
+                "operationId": "StudioResourceCreate",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "file",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    {
+                        "name": "studio_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created a new image"
+                    },
+                    "403": {
+                        "description": "Parameters are forbidden"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "SettingResource": {
+                "title": "SettingResource",
+                "description": "Setting Resource",
+                "properties": {
+                    "id": {
+                        "schema": "SettingResource",
+                        "description": "Class SettingResource",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "StudioResource": {
+                "title": "StudioResource",
+                "description": "Studio Resource",
+                "properties": {
+                    "id": {
+                        "schema": "StudioResource",
+                        "description": "Class StudioResource",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
