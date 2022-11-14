@@ -44,10 +44,10 @@ class ProductService extends Service
     {
         $studio = Studio::where('name', $productData['studio_id'])->first();
 
-        $imagePut = Storage::putFile('/products/' . $studio->id, $productData['image'], ['visibility' => 'public']);
+        $imagePut = Storage::putFile('public/products/' . $studio->id, $productData['image'], ['visibility' => 'public']);
         $imagreUrl = Storage::url($imagePut);
 
-        $videoPut = Storage::putFile('/products/' . $studio->id, $productData['video'], ['visibility' => 'public']);
+        $videoPut = Storage::putFile('public/products/' . $studio->id, $productData['video'], ['visibility' => 'public']);
         $videoUrl = Storage::url($videoPut);
 
         $toDb = [

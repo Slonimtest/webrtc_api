@@ -21,9 +21,10 @@ class ProductResource extends JsonResource
     {
         return [
             'id'        => $this->id,
+            'title'     => $this->title,
             'studio_id' => $this->studio_id,
-            'images'     => $this->images,
-            'videos'     => $this->videos
+            'images'    => config('app.url') . $this->images,
+            'videos'    => config('app.url') . $this->videos
         ];
     }
 }
