@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\StudioResourceController;
@@ -21,4 +22,5 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('studios', StudioController::class);
     Route::apiResource('settings', SettingController::class);
     Route::apiResource('resources', StudioResourceController::class);
+    Route::apiResource('products', ProductController::class);
 });

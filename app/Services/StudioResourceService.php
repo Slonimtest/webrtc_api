@@ -48,7 +48,7 @@ class StudioResourceService extends Service
     {
         $studio = Studio::where('name', $imageData['studio_id'])->first();
 
-        $file_put = Storage::putFile('/StudiosResources/' . $studio->id . '/' . $imageData['type'], $imageData['file']);
+        $file_put = Storage::putFile('/StudiosResources/' . $studio->id . '/' . $imageData['type'], $imageData['file'], ['visibility' => 'public']);
         $url = Storage::url($file_put);
 
         $toDb = [

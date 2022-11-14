@@ -44,6 +44,17 @@ class StudioResource extends JsonResource
             }
             $i += 1;
         }
+
+        $i = 0;
+        foreach ($studio->products as $product) {
+            $productUrlImg[$i]['id'] = $product->id;
+            $productUrlImg[$i]['title'] = $product->title;
+            $productUrlImg[$i]['images'] = config('app.url') . $product->images;
+            $productUrlImg[$i]['videos'] = config('app.url') . $product->videos;
+
+            $i += 1;
+        }
+
         $settingStudio = $studio->settings->first();
         if ($settingStudio) {
             $setting['id'] = $settingStudio['id'] ?? null;
@@ -56,7 +67,7 @@ class StudioResource extends JsonResource
             'settings' => $setting ?? null,
             'images' => $urlImg ?? null,
             'logos' => $urlLogo ?? null,
-            'products' => null
+            'products' => $productUrlImg ?? null
         ];
     }
 }
