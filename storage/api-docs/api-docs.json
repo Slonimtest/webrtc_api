@@ -5,6 +5,106 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/v1/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Display a listing of the product.",
+                "operationId": "ProdutcList",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "order_by",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "desc",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "studio_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return available companies list"
+                    },
+                    "403": {
+                        "description": "Company is forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Store a newly created product in storage.",
+                "operationId": "ProductCreate",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "image",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    {
+                        "name": "video",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    {
+                        "name": "studio_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created a new setting"
+                    },
+                    "403": {
+                        "description": "Parameters are forbidden"
+                    }
+                }
+            }
+        },
         "/api/v1/settings": {
             "get": {
                 "tags": [
