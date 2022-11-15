@@ -49,12 +49,10 @@ class StudioResourceService extends Service
         $studio = Studio::where('name', $imageData['studio_id'])->first();
 
         $file_put = Storage::putFile('studios_resources/' . $studio->id . '/' . $imageData['type'], $imageData['file']);
-        $url = Storage::url($file_put);
-        // $url = asset($file_put);
 
         $toDb = [
             'studio_id' => $studio->id,
-            'url' => $url
+            'url' => config('app.asset_url') . $file_put
         ];
 
         return StudioResource::create($toDb);
