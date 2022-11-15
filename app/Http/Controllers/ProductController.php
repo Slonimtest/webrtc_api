@@ -111,7 +111,7 @@ class ProductController extends ApiController
      *      name="id", in="path", required=true, @OA\Schema(type="integer")
      *     ),
      *     @OA\Parameter(
-     *      name="title", in="query", required=false, @OA\Schema(type="string")
+     *      name="title", in="query", required=true, @OA\Schema(type="string")
      *     ),
      *     @OA\Parameter(
      *      name="image", in="query", required=false, @OA\Schema(type="file")
