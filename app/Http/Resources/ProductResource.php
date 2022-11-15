@@ -23,8 +23,8 @@ class ProductResource extends JsonResource
             'id'        => $this->id,
             'title'     => $this->title,
             'studio_id' => $this->studio_id,
-            'image'    => config('app.url') . $this->images,
-            'video'    => config('app.url') . $this->videos
+            'image'    => $this->images ? config('app.url') . $this->images : null,
+            'video'    => $this->videos ? config('app.url') . $this->videos : null
         ];
     }
 }

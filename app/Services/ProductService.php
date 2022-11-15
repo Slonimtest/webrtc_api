@@ -44,17 +44,24 @@ class ProductService extends Service
     {
         $studio = Studio::where('name', $productData['studio_id'])->first();
 
-        $imagePut = Storage::putFile('products/' . $studio->id, $productData['image']);
-        // $imagreUrl = Storage::url($imagePut);
+        $imagePut = null;
+        $videoPut = null;
 
-        $videoPut = Storage::putFile('products/' . $studio->id, $productData['video']);
-        // $videoUrl = Storage::url($videoPut);
+        if (isset($productData['image'])) {
+            $imagePut = Storage::putFile('products/' . $studio->id, $productData['image']);
+            $imagreUrl = config('app.asset_url') . $imagePut;
+        }
+
+        if (isset($productData['video'])) {
+            $videoPut = Storage::putFile('products/' . $studio->id, $productData['video']);
+            $videoUrl = config('app.asset_url') . $videoPut;
+        }
 
         $toDb = [
             'title' => $productData['title'],
             'studio_id' => $studio->id,
-            'images' => config('app.asset_url') . $imagePut,
-            'videos' => config('app.asset_url') . $videoPut
+            'images' => $imagreUrl ?? null,
+            'videos' => $videoUrl ?? null
         ];
 
         $produc = Product::create($toDb);
