@@ -7,6 +7,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use App\Models\Studio;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 /**
  * Class ProductService
@@ -77,6 +78,31 @@ class ProductService extends Service
      */
     public function update(Product $product, $productData)
     {
+
+        if (isset($productData['image'])) {
+            // !$product->images ?? Storage::disk('local')->delete($product->images);
+            !$product->images ?? File::delete(public_path() . '/' . $product->images);
+            $imagePut = Storage::putFile('products/' . $product->studio_id, $productData['image']);
+            $imagreUrl = config('app.asset_url') . $imagePut;
+            $productData['images'] = $imagreUrl;
+        } else {
+            // !$product->images ?? Storage::disk('local')->delete($product->images);
+            !$product->images ?? File::delete(public_path() . '/' . $product->images);
+            $productData['images'] = null;
+        }
+
+        if (isset($productData['video'])) {
+            // !$product->videos ?? Storage::disk('local')->delete($product->videos);
+            !$product->images ?? File::delete(public_path() . '/' . $product->videos);
+            $videoPut = Storage::putFile('products/' . $product->studio_id, $productData['video']);
+            $videoUrl = config('app.asset_url') . $videoPut;
+            $productData['videos'] = $videoUrl;
+        } else {
+            // !$product->videos ?? Storage::disk('local')->delete($product->videos);
+            !$product->images ?? File::delete(public_path() . '/' . $product->videos);
+            $productData['videos'] = null;
+        }
+
         $product->update($productData);
     }
 
