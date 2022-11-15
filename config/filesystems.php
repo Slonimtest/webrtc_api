@@ -40,17 +40,12 @@ return [
                     'private' => 0600,
                 ],
                 'dir' => [
-                    'public' => 0775,
+                    'public' => 0755,
                     'private' => 0700,
                 ],
             ],
-            'throw' => false,
-        ],
-
-        'images' => [
-            'driver' => 'local',
-            'root' => public_path('images'),
             'visibility' => 'public',
+            'throw' => false,
         ],
 
         'public' => [
