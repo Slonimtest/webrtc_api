@@ -59,4 +59,27 @@ class StudioResourceService extends Service
 
         return StudioResource::create($toDb);
     }
+
+    /**
+     * Update existing studio resource
+     *
+     * @param StudioResource $studioResource
+     * @param array $studioResourceData
+     */
+    public function update(StudioResource $studioResource, array $studioResourceData)
+    {
+        dd($studioResource);
+        $studioResource->update($studioResourceData);
+    }
+
+    /**
+     * Delete an existing setting
+     *
+     * @param StudioResource $studioResource
+     */
+    public function delete(StudioResource $studioResource)
+    {
+        dd($studioResource);
+        $studioResource->delete();
+    }
 }

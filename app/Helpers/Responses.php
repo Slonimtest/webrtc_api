@@ -33,6 +33,24 @@ trait Responses
     }
 
     /**
+     * @param int $code
+     * @return JsonResponse
+     */
+    public function successResponse($code = Response::HTTP_OK)
+    {
+        $payload = [
+            'status' => true
+        ];
+
+        return response()->json(
+            $payload,
+            $code,
+            ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+            JSON_UNESCAPED_UNICODE
+        );
+    }
+
+    /**
      * @param $messages
      * @param int $code
      */

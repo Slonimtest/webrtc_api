@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SettingCreateRequest;
 use App\Http\Requests\SettingListRequest;
+use App\Http\Requests\SettingUpdateRequest;
 use App\Http\Resources\SettingResource;
+use App\Models\Setting;
 use App\Services\SettingService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -85,5 +87,59 @@ class SettingController extends ApiController
         $setting = $this->service->create($request->validated());
 
         return $this->successResponseWithData(new SettingResource($setting));
+    }
+
+    /**
+     * Update the specified setting in storage.
+     *
+     * @OA\Put(
+     *     path="/api/v1/settings/{id}",
+     *     operationId="SettingUpdate",
+     *     tags={"Settings"},
+     *     @OA\Parameter(
+     *      name="id", in="path", required=true, @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *      name="options", in="query", required=false, @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response="200", description="Return the updated setting"),
+     *     @OA\Response(response="403", description="Setting is forbidden"),
+     *     @OA\Response(response="404", description="Setting not found"),
+     * )
+     *
+     * @param SettingUpdateRequest $request
+     * @param Setting $setting
+     * @return JsonResponse
+     */
+    public function update(SettingUpdateRequest $request, Setting $setting): JsonResponse
+    {
+        $this->service->update($setting, $request->validated());
+
+        return $this->successResponseWithData(new SettingResource($setting));
+    }
+
+    /**
+     * Remove the specified setting from storage.
+     *
+     * @OA\Delete(
+     *     path="/api/v1/settings/{id}",
+     *     operationId="SettingDelete",
+     *     tags={"Settings"},
+     *     @OA\Parameter(
+     *      name="id", in="path", required=true, @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="200", description="The setting has been successfuly deleted"),
+     *     @OA\Response(response="403", description="The setting is forbidden"),
+     *     @OA\Response(response="404", description="Setting not found"),
+     * )
+     *
+     * @param Setting $setting
+     * @return JsonResponse
+     */
+    public function destroy(Setting $setting): JsonResponse
+    {
+        $this->service->delete($setting);
+
+        return $this->successResponse();
     }
 }

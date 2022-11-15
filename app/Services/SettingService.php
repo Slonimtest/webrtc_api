@@ -61,4 +61,25 @@ class SettingService extends Service
 
         return $setting;
     }
+
+    /**
+     * Update existing setting
+     *
+     * @param Setting $setting
+     * @param array $settingData
+     */
+    public function update(Setting $setting, array $settingData)
+    {
+        $setting->update($settingData);
+    }
+
+    /**
+     * Delete an existing setting
+     *
+     * @param Setting $setting
+     */
+    public function delete(Setting $setting)
+    {
+        $setting->delete();
+    }
 }

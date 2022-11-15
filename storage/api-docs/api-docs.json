@@ -105,6 +105,88 @@
                 }
             }
         },
+        "/api/v1/products/{id}": {
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update the specified product in storage.",
+                "operationId": "ProductUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "image",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    {
+                        "name": "video",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return the updated product"
+                    },
+                    "403": {
+                        "description": "Product is forbidden"
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Remove the specified product from storage.",
+                "operationId": "ProductDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The product has been successfuly deleted"
+                    },
+                    "403": {
+                        "description": "The product is forbidden"
+                    },
+                    "404": {
+                        "description": "Product not found"
+                    }
+                }
+            }
+        },
         "/api/v1/settings": {
             "get": {
                 "tags": [
@@ -185,6 +267,72 @@
                     },
                     "403": {
                         "description": "Parameters are forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/settings/{id}": {
+            "put": {
+                "tags": [
+                    "Settings"
+                ],
+                "summary": "Update the specified setting in storage.",
+                "operationId": "SettingUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "options",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return the updated setting"
+                    },
+                    "403": {
+                        "description": "Setting is forbidden"
+                    },
+                    "404": {
+                        "description": "Setting not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Settings"
+                ],
+                "summary": "Remove the specified setting from storage.",
+                "operationId": "SettingDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The setting has been successfuly deleted"
+                    },
+                    "403": {
+                        "description": "The setting is forbidden"
+                    },
+                    "404": {
+                        "description": "Setting not found"
                     }
                 }
             }
@@ -353,6 +501,80 @@
                     },
                     "403": {
                         "description": "Parameters are forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/resources/{id}": {
+            "put": {
+                "tags": [
+                    "StudioResources"
+                ],
+                "summary": "Update the specified studio resource in storage.",
+                "operationId": "StudioResourceUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "file",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return the updated StudioResource"
+                    },
+                    "403": {
+                        "description": "StudioResource is forbidden"
+                    },
+                    "404": {
+                        "description": "StudioResource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "StudioResources"
+                ],
+                "summary": "Remove the specified studioresource from storage.",
+                "operationId": "StudioResourceDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The studioresource has been successfuly deleted"
+                    },
+                    "403": {
+                        "description": "The studioresource is forbidden"
+                    },
+                    "404": {
+                        "description": "Studioresource not found"
                     }
                 }
             }

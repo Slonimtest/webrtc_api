@@ -61,4 +61,25 @@ class ProductService extends Service
 
         return $produc;
     }
+
+    /**
+     * Update an existing product
+     *
+     * @param Product $product
+     * @param array $productData
+     */
+    public function update(Product $product, $productData)
+    {
+        $product->update($productData);
+    }
+
+    /**
+     * Delete an existing product
+     *
+     * @param Product $product
+     */
+    public function delete(Product $product)
+    {
+        $product->delete();
+    }
 }

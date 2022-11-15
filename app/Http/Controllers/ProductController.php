@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductListRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Http\Resources\ProductResource;
+use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -100,25 +102,62 @@ class ProductController extends ApiController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified product in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @OA\Put(
+     *     path="/api/v1/products/{id}",
+     *     operationId="ProductUpdate",
+     *     tags={"Products"},
+     *     @OA\Parameter(
+     *      name="id", in="path", required=true, @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *      name="title", in="query", required=false, @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *      name="image", in="query", required=false, @OA\Schema(type="file")
+     *     ),
+     *     @OA\Parameter(
+     *      name="video", in="query", required=false, @OA\Schema(type="file")
+     *     ),
+     *     @OA\Response(response="200", description="Return the updated product"),
+     *     @OA\Response(response="403", description="Product is forbidden"),
+     *     @OA\Response(response="404", description="Product not found"),
+     * )
+     *
+     * @param  ProductUpdateRequest  $request
+     * @param  Product  $product
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(ProductUpdateRequest $request, Product $product): JsonResponse
     {
-        //
+        $this->service->update($product, $request->validated());
+
+        return $this->successResponseWithData(new ProductResource($product));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified product from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @OA\Delete(
+     *     path="/api/v1/products/{id}",
+     *     operationId="ProductDelete",
+     *     tags={"Products"},
+     *     @OA\Parameter(
+     *      name="id", in="path", required=true, @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response="200", description="The product has been successfuly deleted"),
+     *     @OA\Response(response="403", description="The product is forbidden"),
+     *     @OA\Response(response="404", description="Product not found"),
+     * )
+     *
+     * @param  Product  $product
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Product $product): JsonResponse
     {
-        //
+        $this->service->delete($product);
+
+        return $this->successResponse();
     }
 }

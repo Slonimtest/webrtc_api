@@ -4,17 +4,19 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class SettingUpdateRequest extends Request
+class ProductUpdateRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.
      *
      * @return array
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'options'   => 'nullable',
+            'title'     => 'string|required',
+            'image'     => 'file|mimes:jpeg,jpg,png',
+            'video'     => 'file'
         ];
     }
 }
