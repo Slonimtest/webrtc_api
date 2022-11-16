@@ -66,7 +66,7 @@ class StudioResourceController extends ApiController
      * @OA\Post(
      *     path="/api/v1/resources",
      *     operationId="StudioResourceCreate",
-     *     tags={"Images"},
+     *     tags={"StudioResources"},
      *     @OA\Parameter(
      *      name="type", in="query", required=true, @OA\Schema(type="string")
      *     ),
@@ -143,7 +143,6 @@ class StudioResourceController extends ApiController
      */
     public function destroy(StudioResource $studioResource): JsonResponse
     {
-        dd($studioResource->id);
         $this->service->delete($studioResource);
 
         return $this->successResponse();

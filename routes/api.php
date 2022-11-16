@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\StudioResourceController;
+use App\Models\StudioResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::apiResource('studios', StudioController::class);
     Route::apiResource('settings', SettingController::class);
     Route::apiResource('resources', StudioResourceController::class);
+    Route::put('resources/{resourse}', [StudioResourceController::class, 'update'], function (StudioResource $resourse) {
+    });
     Route::apiResource('products', ProductController::class);
 });

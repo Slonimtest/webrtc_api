@@ -124,7 +124,7 @@
                     {
                         "name": "title",
                         "in": "query",
-                        "required": false,
+                        "required": true,
                         "schema": {
                             "type": "string"
                         }
@@ -465,7 +465,7 @@
             },
             "post": {
                 "tags": [
-                    "Images"
+                    "StudioResources"
                 ],
                 "summary": "Upload a new image.",
                 "operationId": "StudioResourceCreate",

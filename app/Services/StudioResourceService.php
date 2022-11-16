@@ -6,7 +6,9 @@ use App\Models\StudioResource;
 use App\Models\Studio;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Route;
 
 /**
  * Class StudioResourceService
@@ -66,7 +68,14 @@ class StudioResourceService extends Service
      */
     public function update(StudioResource $studioResource, array $studioResourceData)
     {
-        dd($studioResource);
+        if (isset($studioResourceData['file'])) {
+            !$studioResource->url ?? File::delete(public_path() . '/' . $studioResource->url);
+            $file_put = Storage::putFile('studios_resources/' . $studioResource->studio_id . '/' . $studioResourceData['type'], $studioResourceData['file']);
+            $studioResourceData['url'] = config('app.asset_url') . $file_put;
+        } else {
+            !$studioResource->url ?? File::delete(public_path() . '/' . $studioResource->url);
+            $studioResourceData['url'] = null;
+        }
         $studioResource->update($studioResourceData);
     }
 
@@ -77,7 +86,6 @@ class StudioResourceService extends Service
      */
     public function delete(StudioResource $studioResource)
     {
-        dd($studioResource);
         $studioResource->delete();
     }
 }

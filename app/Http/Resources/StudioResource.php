@@ -49,8 +49,8 @@ class StudioResource extends JsonResource
         foreach ($studio->products as $product) {
             $productUrlImg[$i]['id'] = $product->id;
             $productUrlImg[$i]['title'] = $product->title;
-            $productUrlImg[$i]['image'] = config('app.url') . $product->images;
-            $productUrlImg[$i]['video'] = config('app.url') . $product->videos;
+            $productUrlImg[$i]['image'] = $product->images ? config('app.url') . $product->images : null;
+            $productUrlImg[$i]['video'] = $product->videos ? config('app.url') . $product->videos : null;
 
             $i += 1;
         }

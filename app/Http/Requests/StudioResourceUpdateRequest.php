@@ -14,8 +14,8 @@ class StudioResourceUpdateRequest extends Request
     public function rules()
     {
         return [
-            'type'      => 'string',
-            'file'      => 'file|mimes:jpeg,jpg,png,webp,mp4'
+            'type'      => 'string|required',
+            'file'      => 'file|required|mimes:jpeg,jpg,png,webp,mp4'
         ];
     }
 }

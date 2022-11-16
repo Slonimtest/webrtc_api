@@ -44,7 +44,7 @@ class Setting extends Model
      *
      * @return BelongsTo
      */
-    public function studio(): BelongsTo
+    public function studios(): BelongsTo
     {
         return $this->belongsTo(Studio::class);
     }

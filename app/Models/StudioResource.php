@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $studio_id
  * @property string $url
  *
- * @property Studio $studio
  */
 class StudioResource extends Model
 {
@@ -26,8 +25,8 @@ class StudioResource extends Model
      * @var array
      */
     protected $fillable = [
-        'studio_id',
-        'url'
+        'url',
+        'studio_id'
     ];
 
     /**
@@ -35,7 +34,7 @@ class StudioResource extends Model
      *
      * @return BelongsTo
      */
-    public function studio(): BelongsTo
+    public function studios(): BelongsTo
     {
         return $this->belongsTo(Studio::class);
     }
