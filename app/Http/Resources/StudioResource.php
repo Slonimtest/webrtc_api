@@ -42,6 +42,10 @@ class StudioResource extends JsonResource
                 $urlLogo[$i]['id'] = $resource->id;
                 $urlLogo[$i]['url'] = config('app.url') . $resource->url;
             }
+            if (strpos($resource->url, '/panorama/')) {
+                $urlLogo[$i]['id'] = $resource->id;
+                $urlLogo[$i]['url'] = config('app.url') . $resource->url;
+            }
             $i += 1;
         }
 
