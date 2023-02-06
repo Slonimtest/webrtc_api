@@ -43,8 +43,8 @@ class StudioResource extends JsonResource
                 $urlLogo[$i]['url'] = config('app.url') . $resource->url;
             }
             if (strpos($resource->url, '/panorama/')) {
-                $urlLogo[$i]['id'] = $resource->id;
-                $urlLogo[$i]['url'] = config('app.url') . $resource->url;
+                $urlPanorama[$i]['id'] = $resource->id;
+                $urlPanorama[$i]['url'] = config('app.url') . $resource->url;
             }
             $i += 1;
         }
@@ -71,6 +71,7 @@ class StudioResource extends JsonResource
             'settings' => $setting ?? null,
             'images' => $urlImg ?? null,
             'logos' => $urlLogo ?? null,
+            'panorams' => $urlPanorama ?? null,
             'products' => $productUrlImg ?? null
         ];
     }
