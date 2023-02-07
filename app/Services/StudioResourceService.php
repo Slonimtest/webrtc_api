@@ -50,7 +50,20 @@ class StudioResourceService extends Service
     {
         $studio = Studio::where('name', $imageData['studio_id'])->first();
 
-        $file_put = Storage::putFile('studios_resources/' . $studio->id . '/' . $imageData['type'], $imageData['file']);
+        $fileNames = [];
+        foreach ($studio->studioResources as $resource) {
+            if (strpos($resource->url, '/' . $imageData['type'] . '/')) {
+                $fileNames[] = basename($resource->url);
+            }
+        }
+
+        $newFileName = '';
+        if (in_array($imageData['file']->getClientOriginalName(), $fileNames)) {
+            $pathinfo = pathinfo($imageData['file']->getClientOriginalName());
+            $newFileName = $pathinfo['filename'] . '_1.' . $pathinfo['extension'];
+        }
+
+        $file_put = Storage::putFileAs('studios_resources/' . $studio->id . '/' . $imageData['type'], $imageData['file'], empty($newFileName) ? $imageData['file']->getClientOriginalName() : $newFileName);
 
         $toDb = [
             'studio_id' => $studio->id,
