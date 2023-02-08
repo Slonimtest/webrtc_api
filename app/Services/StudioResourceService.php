@@ -60,7 +60,7 @@ class StudioResourceService extends Service
         $newFileName = '';
         if (in_array($imageData['file']->getClientOriginalName(), $fileNames)) {
             $pathinfo = pathinfo($imageData['file']->getClientOriginalName());
-            $newFileName = $pathinfo['filename'] . '_1.' . $pathinfo['extension'];
+            $newFileName = $pathinfo['filename'] . '_' . count($fileNames) . '.' . $pathinfo['extension'];
         }
 
         $file_put = Storage::putFileAs('studios_resources/' . $studio->id . '/' . $imageData['type'], $imageData['file'], empty($newFileName) ? $imageData['file']->getClientOriginalName() : $newFileName);
